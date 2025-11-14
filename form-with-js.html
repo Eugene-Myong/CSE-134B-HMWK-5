@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form-no-js</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center; 
+                align-items: flex-start; 
+                padding: 2rem;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 0.2rem;
+            }
+
+            input[type="text"], input[type="email"], input[list], textarea {
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                width: 100%;
+            }
+
+            input[type="submit"] {
+                padding: 0.5rem;
+                font-size: 1rem;
+                cursor: pointer;
+                width: 105%;
+            }
+
+            output {
+                font-size: 0.9rem;
+                min-height: 1.2em;
+            }
+
+            output#error {
+                color: red;
+            }
+
+            output#info {
+                color: green;
+            } 
+                        input:required {
+                border-left: 3px solid #007BFF; 
+            }
+            
+            textarea:required {
+                border-left: 3px solid #007BFF;
+            }
+
+            input[type="text"]:valid, input[type="email"]:valid, input[list]:valid {
+                border-color: green;
+            }
+            
+            input[type="text"]:invalid, input[type="email"]:invalid, input[list]:invalid {
+                border-color: red;
+            }
+            
+            textarea:valid {
+                border-color: green;
+            }
+
+            textarea:invalid {
+                border-color: red;
+            }                       
+        </style>
+
+        <script>
+        function loadHandler() {
+            nameValidation();
+            emailValidation();
+            reasonValidation();
+            messageValidation();
+        }
+
+        function nameValidation () {
+            const name = document.getElementById("name");
+            let error = document.getElementById("error");
+            let errormsg;
+            name.addEventListener("input", () => {
+                name.setCustomValidity("");
+                if (name.checkValidity()) {
+                    error.textContent = "";
+                    return;
+                } else {
+                    showNameError();
+                }
+            });
+        }
+
+        function showNameError () {
+            const name = document.getElementById("name");
+            let error = document.getElementById("error");
+            let errormsg;
+            if (name.validity.tooShort) {
+                errormsg = "Name must be at least 2 characters.";
+                name.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (name.validity.patternMismatch) {
+                errormsg = "Only alphanumeric characters allowed.";
+                name.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (name.validity.valueMissing) {
+                errormsg = "Name is required.";
+                name.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            error.textContent = "";
+            message.setCustomValidity("");
+        }
+
+        function emailValidation() {
+            const email = document.getElementById("email");
+            let error = document.getElementById("error");
+            let errormsg;
+            email.addEventListener("input", () => {
+                email.setCustomValidity("");
+                if (email.checkValidity()) {
+                    error.textContent = "";
+                    return;
+                } else {
+                    showEmailError();
+                }
+            });
+        }
+
+        function showEmailError() {
+            const email = document.getElementById("email");
+            let error = document.getElementById("error");
+            let errormsg;
+            if (email.validity.tooShort) {
+                errormsg = "Email must be at least 2 characters.";
+                email.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+            if (email.validity.patternMismatch) {
+                errormsg = "Email must contain @ and a domain.";
+                email.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (email.validity.valueMissing) {
+                errormsg = "Email is required.";
+                email.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            error.textContent = "";
+            message.setCustomValidity("");
+        }
+
+        function reasonValidation() {
+            const reason = document.getElementById("reason");
+            let error = document.getElementById("error");
+            let errormsg;
+            reason.addEventListener("input", () => {
+                reason.setCustomValidity("");
+                if (reason.checkValidity()) {
+                    error.textContent = "";
+                    return;
+                } else {
+                    showReasonError();
+                }
+            });
+        }
+
+        function showReasonError() {
+            const reason = document.getElementById("reason");
+            let error = document.getElementById("error");
+            let errormsg;
+            if (reason.validity.tooShort) {
+                errormsg = "Reason must be at least 2 characters.";
+                reason.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (reason.validity.patternMismatch) {
+                errormsg = "Only alphanumeric characters allowed.";
+                reason.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (reason.validity.valueMissing) {
+                errormsg = "Reason is required.";
+                reason.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            error.textContent = "";
+            message.setCustomValidity("");
+        }
+
+        function messageValidation() {
+            const message = document.getElementById("message");
+            let error = document.getElementById("error");
+            let errormsg;
+            message.addEventListener("input", () =>{
+                message.setCustomValidity("");
+                if (message.checkValidity()) {
+                    error.textContent = "";
+                    return;
+                } else {
+                    showMessageError();
+                }
+            });
+        }
+
+        function showMessageError() {
+            const message = document.getElementById("message");
+            let error = document.getElementById("error");
+            let errormsg;
+            if (message.validity.tooShort) {
+                errormsg = "Message must be at least 5 characters.";
+                message.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            if (message.validity.valueMissing) {
+                errormsg = "Message is required.";
+                message.setCustomValidity(errormsg);
+                error.textContent = errormsg;
+                return;
+            }
+
+            error.textContent = "";
+            message.setCustomValidity("");
+        }
+
+        window.addEventListener("DOMContentLoaded", loadHandler); 
+        </script>
+    </head>
+    <body>
+        <form id="contactform" action="https://httpbin.org/post" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="Name" minlength="2" maxlength="50" pattern="[A-Za-z0-9\s]+" required>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email" minlength="2" maxlength="50" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
+            <label for="reason">Reason for contact:</label>
+            <input type="text" name="reason" id="reason" list="reasonsuggestions" placeholder="Reason" minlength="2" maxlength="50" pattern="[A-Za-z0-9\s]+" required>
+            <datalist id="reasonsuggestions">
+                <option value="Question">
+                <option value="Comment">
+                <option value="Want to Connect">
+            </datalist>
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" rows="5" placeholder="Message" minlength="5" maxlength="500" required></textarea>
+            <input type="hidden" name="possible_bot" value="true">
+            <input type="submit" value="Submit">
+            <output id="error" name="error"></output>
+            <output id="info" name="info"></output>
+        </form>
+    </body>
+</html>
