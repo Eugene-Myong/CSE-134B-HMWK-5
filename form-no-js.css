@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
+
+input[type="text"], input[type="email"], input[list], textarea {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 105%;
+}
+
+output {
+    font-size: 0.9rem;
+    min-height: 1.2em;
+}
+
+output#error {
+    color: red;
+}
+
+output#info {
+    color: green;
+}
+
+/*form validation*/
+
+input:required {
+    border-left: 3px solid #007BFF; 
+}
+
+textarea:required {
+    border-left: 3px solid #007BFF;
+}
+
+input[type="text"]:valid, input[type="email"]:valid, input[list]:valid {
+    border-color: green;
+}
+
+input[type="text"]:invalid, input[type="email"]:invalid, input[list]:invalid {
+    border-color: red;
+}
+
+textarea:valid {
+    border-color: green;
+}
+
+textarea:invalid {
+    border-color: red;
+}
+
+input#name:focus:invalid ~ output#error::before {
+    content: "Name must be 2-50 letters. Only alphanumeric characters are allowed.";
+}
+
+input#email:focus:invalid ~ output#error::before {
+    content: "Please include an @ and domain in your email.";
+}
+
+input#reason:focus:invalid ~ output#error::before {
+    content: "Please indicate a reason. Only alphanumeric characters are allowed.";
+}
+
+textarea#message:focus:invalid ~ output#error::before {
+    content: "Message must be at least 5 characters.";
+}
+
+input#name:valid ~ output#error::before, input#email:valid ~ output#error::before, input#reason:valid ~ output#error::before, textarea#message:valid ~ output#error::before {
+    content: "";
+}
