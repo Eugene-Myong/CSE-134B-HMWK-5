@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>form-with-js</title>
         <link rel="stylesheet" href="form-with-js.css">
-        <script src="form-with-js.js"></script>
     </head>
     <body>
         <form id="contactform" action="https://httpbin.org/post" method="post">
@@ -35,5 +34,14 @@
             <output id="error" name="error"></output>
             <output id="info" name="info"></output>
         </form>
+        <button id="toggle-btn">Toggle Theme</button>
+        <noscript>
+            <style>
+                #toggle-btn {
+                    display: none !important;
+                }
+            </style>
+        </noscript>
+        <script src="form-with-js.js"></script>
     </body>
 </html>
