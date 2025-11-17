@@ -61,12 +61,6 @@ function showNameError () {
 
     name.setCustomValidity(infomsg);
     info.textContent = infomsg;
-
-    form_errors.push({
-        field: "name",
-        value: name.value,
-        error: infomsg,
-    });
 }
 
 function emailValidation() {
@@ -98,12 +92,6 @@ function showEmailError() {
 
     email.setCustomValidity(infomsg);
     info.textContent = infomsg;
-
-    form_errors.push({
-        field: "email",
-        value: email.value,
-        error: infomsg,
-    });
 }
 
 
@@ -136,12 +124,6 @@ function showReasonError() {
 
     reason.setCustomValidity(infomsg);
     info.textContent = infomsg;
-
-    form_errors.push({
-        field: "reason",
-        value: reason.value,
-        error: infomsg,
-    });
 }
 
 
@@ -172,12 +154,6 @@ function showMessageError() {
 
     message.setCustomValidity(infomsg);
     info.textContent = infomsg;
-
-    form_errors.push({
-        field: "message",
-        value: message.value,
-        error: infomsg,
-    });
 }
 
 
@@ -200,11 +176,6 @@ function setupCharCounter() {
             message.style.backgroundColor = "#f8d7da";
             const info = document.getElementById("info");
             info.textContent = "Message exceeded maximum allowed characters.";
-            form_errors.push({
-                field: "message",
-                value: message.value,
-                error: "Exceeded maximum characters",
-            });
             setTimeout(() => {
                 message.style.backgroundColor = "";
                 info.textContent = "";
@@ -233,9 +204,30 @@ function maskInvalidChars(field, pattern) {
 
 function setupFormErrorCapture() {
     const form = document.getElementById("contactform");
-    form.addEventListener("submit", (event) => {
-        document.getElementById("form_errors").value = JSON.stringify(form_errors);
+    const submitBtn = form.querySelector('input[type="submit"]');
+    submitBtn.addEventListener("click", (event) => {
+        const inputs = form.querySelectorAll("input, textarea");
+        let anyInvalid = false;
+        inputs.forEach(input => {
+            if (!input.checkValidity()) {
+                anyInvalid = true;
+
+                form_errors.push({
+                    field: input.name,
+                    value: input.value,
+                    error: input.validationMessage
+                });
+            }
+        });
+        
+        document.getElementById("form_errors").value =
+            JSON.stringify(form_errors);
+        if (anyInvalid) {
+            return; 
+        }
     });
 }
+
+
 
 window.addEventListener("DOMContentLoaded", loadHandler); 
