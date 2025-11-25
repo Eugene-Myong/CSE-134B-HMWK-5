@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --card-bg: white;
+            --card-text: black;
+            --card-radius: 8px;
+            --card-padding: 1rem;
+            --max-width: 1000px;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: hidden;
+        }
+
+        header {
+            width: 100%;
+            max-width: var(--max-width);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        main {
+            width: 100%;
+            max-width: var(--max-width);
+            padding: 1rem;
+        }
+        .project-list-container {
+            width: 100%;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-height: 75vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        html, body {
+            overflow-y: hidden;
+        }
+
+
+    </style>
+
+    <script defer src="project-card.js"></script>
+</head>
+
+<body>
+    <header id="top">
+        <nav>
+            <input id="menu-toggle" type="checkbox" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">☰</label>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="prof.html">Professional Information</a>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About</a> 
+                <a href="projects.html">Projects</a> 
+            </div>
+        </nav>
+        <h1 style="margin-top: 80px;">Projects</h1>
+    </header>
+    <main>
+        <div class="linkgroup">
+            <a id="load-local" class="linkbutton">Load Local</a>
+            <a id="load-remote" class="linkbutton">Load Remote</a>
+            <a id="project-CRUD" class="linkbutton" href="project-CRUD.html">Project CRUD (local)</a>
+        </div>
+        <div id="project-list" class="project-list-container">
+            <!--Cards go here!-->
+        </div>
+    </main>
+
+    <script>
+        //Helpers
+        function getProjectsLocal() {
+            const data = localStorage.getItem("projects");
+            return data ? JSON.parse(data) : [];
+        }
+
+        function clearCards() {
+            document.getElementById("project-list").innerHTML = "";
+        }
+
+        function renderCards(projects) {
+            clearCards();
+            const container = document.getElementById("project-list");
+            projects.forEach(p => {
+                const card = document.createElement("project-card");
+                card.setAttribute("title", p.title);
+                card.setAttribute("img", p.img);
+                card.setAttribute("alt", p.title);
+                card.setAttribute("desc", p.desc);
+                card.setAttribute("link", p.link);
+                container.appendChild(card);
+            });
+        }
+
+        //Local
+        document.getElementById("load-local").addEventListener("click", () => {
+            const projects = getProjectsLocal();
+
+            if (projects.length === 0) {
+                alert("No local projects found in localStorage.");
+                clearCards();
+            } else {
+                renderCards(projects);
+            }
+        });
+
+        //Remote: My JSON Server
+        const REMOTE_URL = "https://my-json-server.typicode.com/Eugene-Myong/CSE-134B-HMWK-5-MYJSONSERVER/projects";
+        document.getElementById("load-remote").addEventListener("click", async () => {
+            try {
+                const response = await fetch(REMOTE_URL);
+                if (!response.ok) throw new Error("Failed to fetch remote data");
+
+                const projects = await response.json();
+                renderCards(projects);
+
+            } catch (err) {
+                alert("Error loading remote projects.");
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Projects</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .crud-container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 1rem;
+        }
+
+        form {
+            margin-bottom: 3rem;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            background: var(--bg-color);
+        }
+
+        form h2 {
+            margin-top: 0;
+        }
+
+        .field {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+        }
+
+        input, textarea {
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        #CRUDform {
+            display: flex;
+            flex-direction: column;  
+            align-items: center;
+            text-align: center;
+            border: hidden;
+        }
+ 
+        #CRUDform label {
+            display: block;
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            margin: 10px;
+            width: 100%;
+        }
+
+        #CRUDform input,
+        #CRUDform textarea,
+        #submitbutton {
+            width: 100%;                
+            box-sizing: border-box; 
+        }
+
+        #CRUDform h2 {
+            margin-bottom: 5px;
+        }
+
+        .CRUDsubmit { 
+            margin-top: 1rem;   
+            border: hidden;    
+            font-family: 'TeX Gyre Adventor', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="top">
+        <nav>
+            <input id="menu-toggle" type="checkbox" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">☰</label>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="prof.html">Professional Information</a>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About</a> 
+                <a href="projects.html">Projects</a> 
+            </div>
+        </nav>
+        <h1 style="margin-top: 80px;">Manage Projects</h1>
+    </header>
+
+    <div class="crud-container">
+        <!--create-->
+        <form id="create-form">
+            <fieldset id="CRUDform">
+                <h2>Create New Project</h2>
+                <label>Title</label>
+                <input type="text" name="create-title" id="create-title" required>
+                <label>Image URL</label>
+                <input type="text" name="create-img" id="create-img" required>
+                <label>Description</label>
+                <textarea type="text" name="create-desc" id="create-desc" rows="4" required></textarea>
+                <label>Project Link</label>
+                <input type="text" name="create-proj-link" id="create-link" required>
+                <button type="submit" name="create-submit" id="CRUD-create-submit" class="linkbutton CRUDsubmit">Create</button>
+            </fieldset>
+        </form>
+
+        <!--update-->
+        <form id="update-form">
+            <fieldset id="CRUDform">
+                <h2>Update Existing Project</h2>
+                <label>Project Title (to modify)</label>
+                <input type="text" name="update-target-title" id="update-target-title" required>
+                <label>New Title</label>
+                <input type="text" name="update-title" id="update-title">
+                <label>New Image URL</label>
+                <input type="text" name="update-img" id="update-img">
+                <label>New Description</label>
+                <textarea type="text" name="update-desc" id="update-desc" rows="4"></textarea>
+                <label>New Project Link</label>
+                <input id="update-link">
+                <button type="submit" name="update-submit" id="CRUD-update-submit" class="linkbutton CRUDsubmit">Update</button>
+                </fieldset>
+        </form>
+
+        <!--delete-->
+        <form id="delete-form">
+            <fieldset id="CRUDform">
+                <h2>Delete Project</h2>
+                <label>Project Title (to delete)</label>
+                <input type="text" name="delete-title" id="delete-title" required>
+                <button type="submit" name="delete-submit" id="CRUD-delete-submit" class="linkbutton CRUDsubmit">Delete</button>
+            </fieldset>
+        </form>
+
+    </div>
+
+    <script>
+        function getProjects() {
+            const data = localStorage.getItem("projects");
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveProjects(arr) {
+            localStorage.setItem("projects", JSON.stringify(arr));
+        }
+
+        //create
+        document.getElementById("create-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById("create-title").value.trim();
+            const img = document.getElementById("create-img").value.trim();
+            const desc = document.getElementById("create-desc").value.trim();
+            const link = document.getElementById("create-link").value.trim();
+
+            let projects = getProjects();
+
+            const newId = projects.length > 0 
+                ? Math.max(...projects.map(p => p.id)) + 1 
+                : 1;
+
+            const newProject = { id: newId, title, img, desc, link };
+            projects.push(newProject);
+            saveProjects(projects);
+
+            alert(`Project "${title}" created.`);
+            e.target.reset();
+        });
+
+        //update
+        document.getElementById("update-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const targetTitle = document.getElementById("update-target-title").value.trim().toLowerCase();
+            let projects = getProjects();
+
+            let project = projects.find(p => p.title.toLowerCase() === targetTitle);
+
+            if (!project) {
+                alert("Project not found.");
+                return;
+            }
+
+            const newTitle = document.getElementById("update-title").value.trim();
+            const newImg = document.getElementById("update-img").value.trim();
+            const newDesc = document.getElementById("update-desc").value.trim();
+            const newLink = document.getElementById("update-link").value.trim();
+
+            if (newTitle) project.title = newTitle;
+            if (newImg) project.img = newImg;
+            if (newDesc) project.desc = newDesc;
+            if (newLink) project.link = newLink;
+
+            saveProjects(projects);
+
+            alert(`Project "${project.title}" updated.`);
+            e.target.reset();
+        });
+
+
+        //delete
+        document.getElementById("delete-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const targetTitle = document.getElementById("delete-title").value.trim().toLowerCase();
+            let projects = getProjects();
+
+            const newList = projects.filter(p => p.title.toLowerCase() !== targetTitle);
+
+            if (newList.length === projects.length) {
+                alert("Project not found.");
+                return;
+            }
+
+            saveProjects(newList);
+
+            alert(`Project "${targetTitle}" deleted.`);
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
