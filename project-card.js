@@ -9,7 +9,17 @@ class ProjectCard extends HTMLElement {
                 display: block;
             }
 
-            /* --- MODULE-CARD STYLES (converted for shadow DOM) --- */
+            :root {
+                --main-color: color(srgb 0.667 0.271 0.929);;
+                --second-color: color(srgb 0.522 0.145 0.812);;
+                --gap-default: 2em;
+                --border-radius-default: 12px;
+                --navbar-diff-exact: 55px;
+                --bg-color: white;
+                --text-color: black;
+                --btn-bg: white;
+                --btn-text: black;
+            }
 
             a.card-link {
                 display: flex;
@@ -18,8 +28,8 @@ class ProjectCard extends HTMLElement {
                 max-width: 450px;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
-                color: black;
-                background-color: white;
+                color: var(--text-color, black);
+                background-color: var(--bg-color, white);
                 text-decoration: none;
                 border-radius: var(--border-radius-default, 10px);
                 padding: 1em;
@@ -57,7 +67,7 @@ class ProjectCard extends HTMLElement {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: white;
+                background: var(--bg-color, white);
             }
 
             picture img {
