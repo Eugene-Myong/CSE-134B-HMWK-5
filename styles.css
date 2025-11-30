@@ -75,7 +75,6 @@
 }
 
 body {
-    font-family: 'TeX Gyre Adventor', sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
     font-family: Arial, sans-serif;
@@ -83,13 +82,14 @@ body {
 }
 
 html, body {
+    font-family: 'TeX Gyre Adventor', sans-serif;
     margin: 0;
     padding: 0;
     scrollbar-gutter: auto;
     overflow-y: auto;
 }
 
-header {
+header, footer {
     text-align: center;
 }
 
@@ -122,6 +122,7 @@ article {
                                         /*navbar*/
 
 nav {
+    font-family: 'TeX Gyre Adventor', sans-serif;
     position: fixed;
     top: 0;
     left: 0;

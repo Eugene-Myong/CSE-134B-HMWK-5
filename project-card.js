@@ -16,7 +16,6 @@ class ProjectCard extends HTMLElement {
                 flex-direction: column;
                 align-items: center;
                 max-width: 450px;
-                max-height: 450px;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
                 color: black;
@@ -108,7 +107,6 @@ class ProjectCard extends HTMLElement {
         this.shadowRoot.querySelector("img").src = img;
         this.shadowRoot.querySelector("img").alt = alt;
         this.shadowRoot.querySelector(".desc").textContent = desc;
-
         this.shadowRoot.querySelector("a.card-link").href = link;
     }
 }

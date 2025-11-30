@@ -5,39 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects</title>
     <link rel="stylesheet" href="styles.css">
-
     <style>
-        :root {
-            --card-bg: white;
-            --card-text: black;
-            --card-radius: 8px;
-            --card-padding: 1rem;
-            --max-width: 1000px;
-        }
-
         body {
-            margin: 0;
-            font-family: sans-serif;
-            background: white;
+            font-family: 'TeX Gyre Adventor', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: hidden;
         }
 
-        header {
-            width: 100%;
-            max-width: var(--max-width);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        main {
-            width: 100%;
-            max-width: var(--max-width);
-            padding: 1rem;
-        }
         .project-list-container {
+            background-color: var(--bg-color);
             width: 100%;
             margin-top: 2rem;
             display: grid;
@@ -45,12 +22,12 @@
             gap: 1.5rem;
             max-height: 75vh;
             overflow-y: auto;
-            padding-right: 8px;
-        }
-        html, body {
-            overflow-y: hidden;
+            padding: 16px;
         }
 
+        html {
+            overflow-y: scroll;
+        }
 
     </style>
 
@@ -82,7 +59,19 @@
             <!--Cards go here!-->
         </div>
     </main>
-
+    <hr>
+    <footer>
+        <button id="toggle-btn">Toggle Theme</button>
+        <i>Trademark Eugene Myong, All Rights Reserved</i>
+    </footer>
+    <noscript>
+         <style>
+            #toggle-btn {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+    <script src="script.js"></script>
     <script>
         //Helpers
         function getProjectsLocal() {
