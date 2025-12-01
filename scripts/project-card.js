@@ -109,7 +109,15 @@ class ProjectCard extends HTMLElement {
 
     render() {
         const title = this.getAttribute("title") || "Untitled Project";
-        const img = this.getAttribute("img") || "/placeholder.jpeg";
+        const raw = this.getAttribute("img") || "placeholder.jpeg";
+        let img = raw;
+        if (
+        !raw.startsWith("/") &&      
+        !raw.startsWith("../") &&    
+        !raw.startsWith("http")     
+        ) {
+        img = `../${raw.replace(/^\.?\//, "")}`;
+        }
         const alt = this.getAttribute("alt") || "Project image";
         const desc = this.getAttribute("desc") || "";
         const link = this.getAttribute("link") || "#";
