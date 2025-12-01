@@ -68,6 +68,7 @@ class ProjectCard extends HTMLElement {
                 justify-content: center;
                 align-items: center;
                 background: var(--bg-color, white);
+                border: 1px solid black;
             }
 
             picture img {
@@ -108,7 +109,7 @@ class ProjectCard extends HTMLElement {
 
     render() {
         const title = this.getAttribute("title") || "Untitled Project";
-        const img = this.getAttribute("img") || "images/placeholder.jpeg";
+        const img = this.getAttribute("img") || "/placeholder.jpeg";
         const alt = this.getAttribute("alt") || "Project image";
         const desc = this.getAttribute("desc") || "";
         const link = this.getAttribute("link") || "#";

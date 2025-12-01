@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Projects</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 
     <style>
         .crud-container {
@@ -47,7 +47,7 @@
             resize: vertical;
         }
 
-        #CRUDform {
+        .CRUDform {
             display: flex;
             flex-direction: column;  
             align-items: center;
@@ -55,7 +55,7 @@
             border: hidden;
         }
  
-        #CRUDform label {
+        .CRUDform label {
             display: block;
             margin-bottom: 5px; 
             font-weight: bold; 
@@ -63,14 +63,14 @@
             width: 100%;
         }
 
-        #CRUDform input,
-        #CRUDform textarea,
-        #submitbutton {
+        .CRUDform input,
+        .CRUDform textarea,
+        .submitbutton {
             width: 100%;                
             box-sizing: border-box; 
         }
 
-        #CRUDform h2 {
+        .CRUDform h2 {
             margin-bottom: 5px;
         }
 
@@ -88,11 +88,11 @@
             <input id="menu-toggle" type="checkbox" class="menu-toggle">
             <label for="menu-toggle" class="hamburger">☰</label>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="prof.html">Professional Information</a>
-                <a href="contact.html">Contact</a>
-                <a href="about.html">About</a> 
-                <a href="projects.html">Projects</a> 
+                <a href="../index.html">Home</a>
+                <a href="/pages/prof.html">Professional</a>
+                <a href="/pages/contact.html">Contact</a>
+                <a href="/pages/about.html">About</a> 
+                <a href="/pages/projects.html">Projects</a> 
             </div>
         </nav>
         <h1 style="margin-top: 80px;">Manage Projects</h1>
@@ -101,7 +101,7 @@
     <div class="crud-container">
         <!--create-->
         <form id="create-form">
-            <fieldset id="CRUDform">
+            <fieldset class="CRUDform">
                 <h2>Create New Project</h2>
                 <label>Title</label>
                 <input type="text" name="create-title" id="create-title" required>
@@ -117,7 +117,7 @@
 
         <!--update-->
         <form id="update-form">
-            <fieldset id="CRUDform">
+            <fieldset class="CRUDform">
                 <h2>Update Existing Project</h2>
                 <label>Project Title (to modify)</label>
                 <input type="text" name="update-target-title" id="update-target-title" required>
@@ -128,14 +128,14 @@
                 <label>New Description</label>
                 <textarea type="text" name="update-desc" id="update-desc" rows="4"></textarea>
                 <label>New Project Link</label>
-                <input id="update-link">
+                <input type="text" name="update-proj-link" id="update-link">
                 <button type="submit" name="update-submit" id="CRUD-update-submit" class="linkbutton CRUDsubmit">Update</button>
                 </fieldset>
         </form>
 
         <!--delete-->
         <form id="delete-form">
-            <fieldset id="CRUDform">
+            <fieldset class="CRUDform">
                 <h2>Delete Project</h2>
                 <label>Project Title (to delete)</label>
                 <input type="text" name="delete-title" id="delete-title" required>

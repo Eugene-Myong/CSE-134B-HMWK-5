@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
     <style>
         body {
             font-family: 'TeX Gyre Adventor', sans-serif;
@@ -31,7 +31,7 @@
 
     </style>
 
-    <script defer src="project-card.js"></script>
+    <script defer src="/scripts/project-card.js"></script>
 </head>
 
 <body>
@@ -40,11 +40,11 @@
             <input id="menu-toggle" type="checkbox" class="menu-toggle">
             <label for="menu-toggle" class="hamburger">☰</label>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="prof.html">Professional Information</a>
-                <a href="contact.html">Contact</a>
-                <a href="about.html">About</a> 
-                <a href="projects.html">Projects</a> 
+                <a href="/index.html">Home</a>
+                <a href="/pages/prof.html">Professional</a>
+                <a href="/pages/contact.html">Contact</a>
+                <a href="/pages/about.html">About</a> 
+                <a href="/pages/projects.html">Projects</a> 
             </div>
         </nav>
         <h1 style="margin-top: 80px;">Projects</h1>
@@ -53,7 +53,7 @@
         <div class="linkgroup">
             <a id="load-local" class="linkbutton">Load Local</a>
             <a id="load-remote" class="linkbutton">Load Remote</a>
-            <a id="project-CRUD" class="linkbutton" href="project-CRUD.html">Project CRUD (local)</a>
+            <a id="project-CRUD" class="linkbutton" href="/pages/project-CRUD.html">Project CRUD (local)</a>
         </div>
         <div id="project-list" class="project-list-container">
             <!--Cards go here!-->
@@ -71,18 +71,20 @@
             }
         </style>
     </noscript>
-    <script src="script.js"></script>
+    <script src="/scripts/script.js"></script>
     <script>
         const DEFAULT_PROJECTS = [
             {
+                id: 1,
                 title: "Student Grades Analysis",
-                img: "images/sga/sga_small.webp",
+                img: "/images/sga/sga_small.webp",
                 desc: "A group project done for COGS 108: Data Science in Practice. My team and I explored what factors affect student academic performance, and which one affects students the most",
                 link: "https://github.com/Eugene-Myong/StudentGradesAnalysis"
             },
             {
+                id: 2,
                 title: "CSE 134B HMWK 2",
-                img: "images/134b_hmwk2/134b_hmwk2_small.webp",
+                img: "/images/134b_hmwk2/134b_hmwk2_small.webp",
                 desc: "Homework assignment #2 of CSE 134B, which is the HTML skeleton of this website!",
                 link: "https://github.com/Eugene-Myong/CSE-134B-Hmwk-2"
             }

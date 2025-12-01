@@ -19,32 +19,32 @@
 
 @font-face {
     font-family: 'TeX Gyre Adventor';
-    src: url('fonts/TeXGyreAdventor-Regular.woff2') format('woff2'),
-       url('fonts/TeXGyreAdventor-Regular.woff') format('woff');
+    src: url('/fonts/TeXGyreAdventor-Regular.woff2') format('woff2'),
+       url('/fonts/TeXGyreAdventor-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TeX Gyre Adventor';
-    src: url('fonts/TeXGyreAdventor-Bold.woff2') format('woff2'),
-       url('fonts/TeXGyreAdventor-Bold.woff') format('woff');
+    src: url('/fonts/TeXGyreAdventor-Bold.woff2') format('woff2'),
+       url('/fonts/TeXGyreAdventor-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'TeX Gyre Adventor';
-    src: url('fonts/TeXGyreAdventor-Italic.woff2') format('woff2'),
-       url('fonts/TeXGyreAdventor-Italic.woff') format('woff');
+    src: url('/fonts/TeXGyreAdventor-Italic.woff2') format('woff2'),
+       url('/fonts/TeXGyreAdventor-Italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'TeX Gyre Adventor';
-    src: url('fonts/TeXGyreAdventor-BoldItalic.woff2') format('woff2'),
-       url('fonts/TeXGyreAdventor-BoldItalic.woff') format('woff');
+    src: url('/fonts/TeXGyreAdventor-BoldItalic.woff2') format('woff2'),
+       url('/fonts/TeXGyreAdventor-BoldItalic.woff') format('woff');
     font-weight: bold;
     font-style: italic;
 }
@@ -118,8 +118,6 @@ article {
         background-color: transparent; 
     }
 }
-
-                                        /*navbar*/
 
 nav {
     font-family: 'TeX Gyre Adventor', sans-serif;
@@ -200,7 +198,7 @@ nav a:hover {
 hr {
     width: 90%;
 }
-                                        /*home page banner/pfp*/
+
 #pfp {
     border: 1px black solid;
     width: clamp(100px, 15vw, 700px);
@@ -215,7 +213,7 @@ hr {
     margin-top: var(--navbar-diff-exact);
     position: relative;
     height: 50vh;
-    background-image: url('images/placeholder.jpeg');
+    background-image: url('/images/placeholder.jpeg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -227,7 +225,7 @@ hr {
     margin-top: var(--navbar-diff-exact);
     position: relative;
     height: 50vh;
-    background-image: url("images/banner/banner.webp");
+    background-image: url("/images/banner/banner.webp");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -237,7 +235,7 @@ hr {
 
 @media (max-width: 600px) {
     .banner {
-        background-image: url("images/banner/banner_small.webp");
+        background-image: url("/images/banner/banner_small.webp");
     }
 }
 
@@ -247,7 +245,7 @@ hr {
     margin: 0 auto 0 auto; 
     padding: 0.25rem;            
 }
-                                        /*professional section group of links and link buttons*/
+
 #top {
     scroll-margin-top: 100px; 
 }
@@ -320,8 +318,6 @@ iframe {
     border: none;
 }
 
-                                        /*educational section*/
-
 .descgrid {
     display: flex;
     flex-direction: row;
@@ -386,7 +382,6 @@ iframe {
 
 }
 
-                                        /*Layout for cards (projects and certifications)*/
 .module-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
@@ -401,8 +396,8 @@ iframe {
     align-items: center;      
     max-width: 450px;
     max-height: 450px;
-    color: black;  
-    background-color: white;
+    color: var(--text-color, black);
+    background-color: var(--bg-color, white);
     text-decoration: none;        
     border-radius: var(--border-radius-default);
     padding: 1em;
@@ -414,6 +409,7 @@ iframe {
         height: auto;
         border-radius: var(--border-radius-default);
         margin-bottom: 15px;
+        border: 1px solid black;
     }
 
     &:hover {
@@ -431,7 +427,6 @@ iframe {
     }
 }
 
-                                        /*contact section*/
 .contactsection {
     text-align: center;
 }
@@ -441,7 +436,6 @@ iframe {
     flex-direction: column;  
     align-items: center;
     text-align: center;
-    /*border: hidden;*/
 }
 
 #contactform label {
@@ -466,8 +460,6 @@ iframe {
     font-family: 'TeX Gyre Adventor', sans-serif;
 }
 
-
-                                        /*about page*/
 
 quote-generator{
     display: block;
