@@ -9,18 +9,6 @@ class ProjectCard extends HTMLElement {
                 display: block;
             }
 
-            :root {
-                --main-color: color(srgb 0.667 0.271 0.929);;
-                --second-color: color(srgb 0.522 0.145 0.812);;
-                --gap-default: 2em;
-                --border-radius-default: 12px;
-                --navbar-diff-exact: 55px;
-                --bg-color: white;
-                --text-color: black;
-                --btn-bg: white;
-                --btn-text: black;
-            }
-
             a.card-link {
                 display: flex;
                 flex-direction: column;
